@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const {
-    index
+    index,
 } = require('../controllers/dashboardController')
 
-router.get('/', index)
+router.get('/', index);
 
 module.exports = router;
