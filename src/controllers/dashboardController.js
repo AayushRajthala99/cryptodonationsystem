@@ -1,9 +1,6 @@
 async function index(req, res, next) {
     try {   
-            res.render('dashboard/index',{
-                data: data,
-                month: months[monthId - 1].name, 
-            });
+            res.render('dashboard/index');
         } catch (err) {
         res.send("ERROR LOADING PAGE");
     }

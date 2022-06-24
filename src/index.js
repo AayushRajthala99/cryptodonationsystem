@@ -2,12 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
-const session = require("express-session");
 const ejs = require("ejs");
 const config = require("../config/default.json");
 require("dotenv").config();
 
 const {
+	loginRouter,
 	dashboardRouter,
 } = require("./routers");
 
@@ -27,6 +27,7 @@ app.use(
 );
 
 //Routes...
+app.use("/", loginRouter);
 app.use("/dashboard", dashboardRouter);
 
 app.listen(process.env.APP_PORT || config.app.port, () => {
