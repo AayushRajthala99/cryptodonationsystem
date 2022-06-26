@@ -18,7 +18,7 @@
         </div>
         <div class="registration-form">
             <h1>FILL OUT FORM TO REGISTER!</h1>
-            <form action="/register" method="post">
+            <form id="registrationform" action="/register" method="post">
                 <div class="registration-form-input">
                     <label for="fullname">FULL NAME</label>
                     <input type="text" name="fullname" id="fullname">
@@ -36,13 +36,17 @@
                     <input type="password" name="password" id="password">
                 </div>
                 <div class="registration-form-input">
-                    <label for="confirmpassword">CONFIRM PASSWORD</label>
+                    <div class="label-container">
+                        <div><label for="confirmpassword">CONFIRM PASSWORD</label></div>
+                        <div class="form-error">* WRONG</div>
+                    </div>
                     <input type="password" name="confirmpassword" id="confirmpassword">
                 </div>
                 <div>
                     <button type="submit" class="submit-button">REGISTER</button>
                 </div>
             </form>
+            <h2>ALREADY HAVE AN ACCOUNT? <a href="">LOGIN</a></h2>
         </div>
     </div>
     <script src="/js/register.js"></script>
