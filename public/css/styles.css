@@ -1,20 +1,67 @@
+/* FONTS */
+@font-face {
+  font-family: 'UniSansHeavy';
+  src: url(../fonts/UniSansHeavy.otf);
+}
+
+/*  
+@font-face {
+  font-family: 'UniSansHeavyItalic';
+  src: url(../fonts/UniSansHeavyItalic.otf);
+} */
+
+/* @font-face {
+  font-family: 'UniSansThin';
+  src: url(../fonts/UniSansThin.otf);
+} */
+
+/* @font-face {
+  font-family: 'UniSansThinItalic';
+  src: url(../fonts/UniSansThinItalic.otf);
+} */
+
+
 /* Global */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  li {
-    list-style: none;
-  }
-  
-  body {
-    background-color: #454665;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-family: 'UniSansHeavy', sans-serif;
+  color: #EBEFFF;
+  font-size: 45px;
+}
+
+label {
+  font-family: 'UniSansHeavy', sans-serif;
+  color: #EBEFFF;
+  font-size: 20px;
+}
+
+body {
+  background-color: #454665;
+}
+
+input {
+  background-color: #3A3D56;
+  color: #000;
+  height: 80px;
+  font-family: inherit;
+  font-size: inherit;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
