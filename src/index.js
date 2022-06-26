@@ -6,7 +6,11 @@ const ejs = require("ejs");
 const config = require("../config/default.json");
 require("dotenv").config();
 
-const { loginRouter, dashboardRouter } = require("./routers");
+const {
+  loginRouter,
+  dashboardRouter,
+  registerRouter
+} = require("./routers");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.set("views", path.join(__dirname, "views"));
@@ -26,6 +30,7 @@ app.use(
 //Routes...
 app.use("/", loginRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/register", registerRouter);
 
 app.listen(process.env.APP_PORT || config.app.port, () => {
   console.log(

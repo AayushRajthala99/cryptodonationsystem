@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <title>Registration | CDS</title>
+</head>
+
+<body>
+    <div class="body-container">
+        <div class="art-container">
+            <img src="/img/register/registration-art.png" alt="registration-art">
+        </div>
+        <div class="registration-form">
+            <h1>FILL OUT FORM TO REGISTER</h1>
+            <form action="/register" method="post">
+                <div class="registration-form-input">
+                    <label for="fullname">FULL NAME</label>
+                    <input type="text" name="fullname" id="fullname" placeholder="Full Name">
+                </div>
+                <div class="registration-form-input">
+                    <label for="walletid">WALLET ID</label>
+                    <input type="text" name="walletid" id="walletid" placeholder="Wallet ID">
+                </div>
+                <div class="registration-form-input">
+                    <label for="email">EMAIL</label>
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="registration-form-input">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="registration-form-input">
+                    <label for="confirmpassword">CONFIRM PASSWORD</label>
+                    <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password">
+                </div>
+                <div>
+                    <button type="submit" class="login-button">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/register.js"></script>
+</body>
+
+</html>
