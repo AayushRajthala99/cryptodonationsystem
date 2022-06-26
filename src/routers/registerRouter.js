@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  index,
-} = require("../controllers/LoginController");
+    index,
+    create,
+} = require("../controllers/RegisterController");
 
 router.get("/", index);
+router.post("/", create);
 
 module.exports = router;
