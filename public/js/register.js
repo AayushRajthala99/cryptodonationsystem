@@ -13,8 +13,8 @@ registrationForm.addEventListener('submit', event => {
 function registrationFormValidation() {
 
     let walletIDErrorFlag, emailErrorFlag, passwordErrorFlag;
-    //Registration Form Value Acquisition...
 
+    //Registration Form Value Acquisition...
     let fullName = registrationForm.querySelector("#fullname");
     let walletID = registrationForm.querySelector("#walletid");
     let email = registrationForm.querySelector("#email");
