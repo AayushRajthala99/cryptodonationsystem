@@ -20,25 +20,34 @@
             <h1>FILL OUT FORM TO REGISTER!</h1>
             <form id="registrationform" action="/register" method="post">
                 <div class="registration-form-input">
-                    <label for="fullname">FULL NAME</label>
+                    <div><label for="fullname">FULL NAME</label></div>
                     <input type="text" name="fullname" id="fullname">
                 </div>
                 <div class="registration-form-input">
-                    <label for="walletid">WALLET ID</label>
+                    <div class="label-container">
+                        <div><label for="walletid">WALLET ID</label></div>
+                        <div class="form-error">* WRONG</div>
+                    </div>
                     <input type="text" name="walletid" id="walletid">
                 </div>
                 <div class="registration-form-input">
-                    <label for="email">EMAIL</label>
+                    <div class="label-container">
+                        <div><label for="email">EMAIL</label></div>
+                        <div class="form-error"></div>
+                    </div>
                     <input type="email" name="email" id="email">
                 </div>
                 <div class="registration-form-input">
-                    <label for="password">PASSWORD</label>
+                    <div class="label-container">
+                        <div><label for="password">PASSWORD</label></div>
+                        <div class="form-error"></div>
+                    </div>
                     <input type="password" name="password" id="password">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container">
                         <div><label for="confirmpassword">CONFIRM PASSWORD</label></div>
-                        <div class="form-error">* WRONG</div>
+                        <div class="form-error"></div>
                     </div>
                     <input type="password" name="confirmpassword" id="confirmpassword">
                 </div>
