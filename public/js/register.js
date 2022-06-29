@@ -3,40 +3,37 @@
 const registrationForm = document.querySelector("#registrationform");
 
 registrationForm.addEventListener('submit', event => {
+    event.preventDefault();
     const correctSubmissionFlag = registrationFormValidation();
+    console.log(correctSubmissionFlag);
+
     if (correctSubmissionFlag) {
         registrationForm.submit();
     }
-    event.preventDefault();
 })
 
 function registrationFormValidation() {
 
-    let walletIDErrorFlag, emailErrorFlag, passwordErrorFlag;
+    let nameErrorFlag, emailErrorFlag, passwordErrorFlag;
 
     //Registration Form Value Acquisition...
     let fullName = registrationForm.querySelector("#fullname");
-    let walletID = registrationForm.querySelector("#walletid");
     let email = registrationForm.querySelector("#email");
     let password = registrationForm.querySelector("#password");
     let confirmpassword = registrationForm.querySelector("#confirmpassword");
 
     let fullNameValue = fullName.value.trim();
-    let walletIDValue = walletID.value.trim();
     let emailValue = email.value.trim();
     let passwordValue = password.value.trim();
     let confirmpasswordValue = confirmpassword.value.trim();
 
-    //Validation for WalletID...
-    if (walletIDValue === '') {
-        walletIDErrorFlag = true;
-        setErrorFor(walletID, '* WALLET ID REQUIRED!');
-    } else if (!isWalletID(walletIDValue)) {
-        walletIDErrorFlag = true;
-        setErrorFor(walletID, '* INVALID FORMAT');
+    //Validation for FullName...
+    if (fullNameValue === '') {
+        nameErrorFlag = true;
+        setErrorFor(fullName, '* NAME REQUIRED!');
     } else {
-        walletIDErrorFlag = false;
-        setSuccessFor(walletID);
+        nameErrorFlag = false;
+        setSuccessFor(fullName);
     }
 
     //Validation for Email...
@@ -62,7 +59,7 @@ function registrationFormValidation() {
     //Validation for Confirm Password...
     if (passwordValue && confirmpasswordValue === '') {
         passwordErrorFlag = true;
-        setErrorFor(confirmpassword, '* CONFIRM PASSWORD REQUIRED!');
+        setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD MISMATCH');
@@ -99,7 +96,7 @@ function registrationFormValidation() {
         }
     }
 
-    if (walletIDErrorFlag == false || emailErrorFlag == false || passwordErrorFlag == false) {
+    if (nameErrorFlag == false && emailErrorFlag == false && passwordErrorFlag == false) {
         return true;
     } else {
         return false;

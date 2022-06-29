@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/register.css">
     <title>Registration | CDS</title>
@@ -20,22 +19,18 @@
             <h1>FILL OUT FORM TO REGISTER!</h1>
             <form id="registrationform" action="/register" method="post">
                 <div class="registration-form-input">
-                    <div><label for="fullname">FULL NAME</label></div>
-                    <input type="text" name="fullname" id="fullname">
-                </div>
-                <div class="registration-form-input">
-                    <div class="label-container" id="labelcontainerwalletid">
-                        <div><label for="walletid">WALLET ID</label></div>
+                    <div class="label-container" id="labelcontainerfullname">
+                        <div><label for="fullname">FULL NAME</label></div>
                         <div class="form-error"></div>
                     </div>
-                    <input type="text" name="walletid" id="walletid">
+                    <input type="text" name="fullname" id="fullname">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontaineremail">
                         <div><label for="email">EMAIL</label></div>
                         <div class="form-error"></div>
                     </div>
-                    <input type="email" name="email" id="email">
+                    <input type="text" name="email" id="email">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontainerpassword">
