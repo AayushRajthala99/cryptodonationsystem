@@ -40,7 +40,7 @@ const userRegistration = async (fullname, email, password) => {
         if (!userInsertResult.insertId) {
             db.rollback();
             return {
-                status: false,
+                status: false
             }
         }
         const userInfo = await getUserInfo(email);
@@ -52,7 +52,7 @@ const userRegistration = async (fullname, email, password) => {
         if (!loginInsertResult.insertId) {
             db.rollback();
             return {
-                status: false,
+                status: false
             }
         }
         await db.commit();
