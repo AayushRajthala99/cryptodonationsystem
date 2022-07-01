@@ -1,24 +1,23 @@
 /* FONTS */
 @font-face {
+  font-family: 'UniSansRegular';
+  src: url(../fonts/UniSansRegular.otf);
+}
+
+@font-face {
   font-family: 'UniSansHeavy';
   src: url(../fonts/UniSansHeavy.otf);
 }
 
 @font-face {
-  font-family: 'UniSansHeavyItalic';
-  src: url(../fonts/UniSansHeavyItalic.otf);
+  font-family: 'UniSansBold';
+  src: url(../fonts/UniSansBold.otf);
 }
 
-/* @font-face {
-  font-family: 'UniSansThin';
-  src: url(../fonts/UniSansThin.otf);
-} */
-
-/* @font-face {
-  font-family: 'UniSansThinItalic';
-  src: url(../fonts/UniSansThinItalic.otf);
-} */
-
+@font-face {
+  font-family: 'UniSansSemiBoldItalic';
+  src: url(../fonts/UniSansSemiBoldItalic.otf);
+}
 
 /* Global */
 * {
@@ -54,7 +53,7 @@ body {
 }
 
 label {
-  font-family: 'UniSansHeavy', sans-serif;
+  font-family: 'UniSansBold', sans-serif;
   color: #EBEFFF;
   font-size: 22px;
   letter-spacing: 1px;
@@ -64,7 +63,7 @@ input {
   background-color: #3A3D56;
   color: #EBEFFF;
   height: 50px;
-  font-family: 'UniSansHeavy', sans-serif;
+  font-family: 'UniSansRegular', sans-serif;
   font-size: 16px;
   padding: 10px;
   border: none;
@@ -75,9 +74,13 @@ input {
   margin-bottom: 15px;
 }
 
-input:hover {
+label:hover {
+  border: none;
+}
+
+input:hover,
+textarea:hover {
   border: 2px solid #656ED3;
-  transition: 0.5s ease;
 }
 
 input:focus,
@@ -101,12 +104,12 @@ textarea:focus {
 }
 
 .submit-button:hover {
-  border: 1px solid #454665;
+  border: 2px solid #454665;
 }
 
 .form-error {
   color: #FFA8A8;
   font-size: 20px;
-  font-family: 'UniSansHeavyItalic', sans-serif;
+  font-family: 'UniSansSemiBoldItalic', sans-serif;
   letter-spacing: 1px;
 }
