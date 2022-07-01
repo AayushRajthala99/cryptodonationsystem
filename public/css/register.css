@@ -13,8 +13,8 @@ h1 {
 }
 
 .art-container img {
-    height: 900px;
-    width: 900px;
+    height: 880px;
+    width: 880px;
     position: absolute;
     left: 150px;
 }
@@ -27,7 +27,7 @@ h1 {
 .registration-form-input {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 580px;
 }
 
 .label-container {
@@ -37,5 +37,5 @@ h1 {
 }
 
 .submit-button {
-    width: 500px;
+    width: 580px;
 }

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/register.css">
     <title>Registration | CDS</title>
@@ -20,25 +19,30 @@
             <h1>FILL OUT FORM TO REGISTER!</h1>
             <form id="registrationform" action="/register" method="post">
                 <div class="registration-form-input">
-                    <label for="fullname">FULL NAME</label>
+                    <div class="label-container" id="labelcontainerfullname">
+                        <div><label for="fullname">FULL NAME</label></div>
+                        <div class="form-error"></div>
+                    </div>
                     <input type="text" name="fullname" id="fullname">
                 </div>
                 <div class="registration-form-input">
-                    <label for="walletid">WALLET ID</label>
-                    <input type="text" name="walletid" id="walletid">
+                    <div class="label-container" id="labelcontaineremail">
+                        <div><label for="email">EMAIL</label></div>
+                        <div class="form-error"></div>
+                    </div>
+                    <input type="text" name="email" id="email">
                 </div>
                 <div class="registration-form-input">
-                    <label for="email">EMAIL</label>
-                    <input type="email" name="email" id="email">
-                </div>
-                <div class="registration-form-input">
-                    <label for="password">PASSWORD</label>
+                    <div class="label-container" id="labelcontainerpassword">
+                        <div><label for="password">PASSWORD</label></div>
+                        <div class="form-error"></div>
+                    </div>
                     <input type="password" name="password" id="password">
                 </div>
                 <div class="registration-form-input">
-                    <div class="label-container">
+                    <div class="label-container" id="labelcontainerconfirmpassword">
                         <div><label for="confirmpassword">CONFIRM PASSWORD</label></div>
-                        <div class="form-error">* WRONG</div>
+                        <div class="form-error"></div>
                     </div>
                     <input type="password" name="confirmpassword" id="confirmpassword">
                 </div>
@@ -46,7 +50,7 @@
                     <button type="submit" class="submit-button">REGISTER</button>
                 </div>
             </form>
-            <h2>ALREADY HAVE AN ACCOUNT? <a href="">LOGIN</a></h2>
+            <h2>ALREADY HAVE AN ACCOUNT? <a href="/">LOGIN</a></h2>
         </div>
     </div>
     <script src="/js/register.js"></script>
