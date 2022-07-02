@@ -1,0 +1,38 @@
+.even-column{
+    display: flex;
+    background: url(../img/Login/graphics.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  
+}
+
+.form-container{
+    display: flex;
+    margin: 150px;
+
+    width: 40%;
+    flex-direction: column;
+   
+}
+.login-form-input{
+
+width: 580px;
+display: flex;
+flex-direction: column;
+}
+h1{
+    margin: 50px 0px;
+}
+.submit-button {
+    width: 580px;
+}
+.image1{
+    width: 100%;
+    background-color: red;
+  
+   
+}

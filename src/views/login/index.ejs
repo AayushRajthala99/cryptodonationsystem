@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login.css">
+    
+    <title>Login | CDS</title>
+</head>
+
+<body>
+    <div class="even-column">
+        <div class="form-container">
+            <div>
+                <h1>
+                    CRYPTO DONATION SYSTEM!</h1>
+            </div>
+            <form id="loginform" action="/login" method="post" >
+                <div class="login-form-input">
+                    <div class="label-container" id="labelcontainerusername">
+                        <div><label for="username">USER NAME</label></div>
+                        <div class="form-error-username"></div>
+                    </div>
+                    <input type="text" name="username" id="username">
+            </form>
+        </div>
+        <div class="login-form-input">
+            <div class="label-container" id="labelcontainerpassword">
+                <div><label for="password">PASSWORD</label></div>
+                <div class="form-error-pass"></div>
+            </div>
+            <input type="password" name="password" id="password">
+            <div>
+                <button type="submit" class="submit-button">LOGIN</button>
+            </div>
+            </form>
+            <h2>DON'T HAVE AN ACCOUNT? <a href="/">REGISTER</a></h2>
+        </div>
+    </div>
+    </div>
+<script src="/js/login.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  index,
+  index
 } = require("../controllers/LoginController");
 
 router.get("/", index);
