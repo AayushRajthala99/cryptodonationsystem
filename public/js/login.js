@@ -14,25 +14,25 @@ loginForm.addEventListener('submit', event => {
 
 function loginFormValidation() {
 
-    let nameErrorFlag, passwordErrorFlag;
+    let emailErrorFlag, passwordErrorFlag;
 
     //Login Form Value Acquisition...
-    let userName = loginForm.querySelector("#username");
+    let email = loginForm.querySelector("#email");
 
     let password = loginForm.querySelector("#password");
   
 
-    let userNameValue = userName.value.trim();
+    let emailNameValue = email.value.trim();
     let passwordValue = password.value.trim();
     
 
     //Validation for usernames...
-    if (userNameValue === '') {
-        nameErrorFlag = true;
-        setErrorFor(userName, '* NAME REQUIRED!');
+    if (emailNameValue === '') {
+        emailErrorFlag = true;
+        setErrorFor(email, '* EMAIl REQUIRED!');
     } else {
-        nameErrorFlag = false;
-        setSuccessFor(userName);
+        emailErrorFlag = false;
+        setSuccessFor(email);
     }
 
 
@@ -59,7 +59,7 @@ function loginFormValidation() {
 
  
 
-    if (nameErrorFlag == false  && passwordErrorFlag == false) {
+    if (emailErrorFlag == false  && passwordErrorFlag == false) {
         return true;
     } else {
         return false;
