@@ -1,0 +1,47 @@
+.body-container {
+    display: flex;
+}
+
+h1 {
+    margin: 50px 0px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.login-form-input {
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    align-self: center;
+}
+
+.title img {
+    width: 400px;
+    margin-bottom: 60px;
+}
+
+.art-container {
+    height: 100%;
+    border-left: 550px solid #AFB3FF;
+    position: absolute;
+    right: 0px;
+}
+
+.art-container img {
+    position: absolute;
+    width: 800px;
+    right: 110px;
+    top: 40px;
+}
+
+.submit-button {
+    width: 550px;
+}
