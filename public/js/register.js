@@ -42,7 +42,7 @@ function registrationFormValidation() {
         setErrorFor(email, '* EMAIL REQUIRED!');
     } else if (!isEmail(emailValue)) {
         emailErrorFlag = true;
-        setErrorFor(email, '* INVALID FORMAT');
+        setErrorFor(email, '* INVALID FORMAT!');
     } else {
         emailErrorFlag = false;
         setSuccessFor(email);
@@ -62,7 +62,7 @@ function registrationFormValidation() {
         setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
-        setErrorFor(confirmpassword, '* PASSWORD MISMATCH');
+        setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
     } else {
         passwordErrorFlag = false;
         setSuccessFor(confirmpassword);
