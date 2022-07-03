@@ -1,52 +1,47 @@
-
-
-.body-container{
+.body-container {
     display: flex;
-    position: relative; 
-
 }
 
-.form-container{   
-    margin: 150px;
-    width: 40%;
-    position: absolute;
-    top: -100px;
-
-}
-.login-form-input{
-
-width: 580px;
-display: flex;
-flex-direction: column;
-
-
-}
-h1{
+h1 {
     margin: 50px 0px;
 }
-.submit-button {
-    width: 580px;
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 200px;
 }
- .title img{
-    width: 350px;
- margin-bottom: 30px;
-    margin-left: 80px;
+
+.login-form-input {
+    width: 550px;
+    display: flex;
+    flex-direction: column;
 }
-.art img{
-    position: absolute;
-    width: 850px;
-    right: 100px;
-    top: 10px;
+
+.title {
+    align-self: center;
 }
-.purpleBlock{
+
+.title img {
+    width: 400px;
+    margin-bottom: 60px;
+}
+
+.art-container {
     height: 100%;
-    border-left:550px solid #AFB3FF ;
+    border-left: 550px solid #AFB3FF;
     position: absolute;
     right: 0px;
 }
-.stick img{
+
+.art-container img {
     position: absolute;
-    width: 350px;
-    left: 0px;
-    bottom: 0px;
+    width: 800px;
+    right: 110px;
+    top: 40px;
+}
+
+.submit-button {
+    width: 550px;
 }

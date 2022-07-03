@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
-
     <title>Login | CDS</title>
 </head>
 
@@ -15,20 +14,20 @@
     <div class="body-container">
         <div class="form-container">
             <div class="title">
-                <img src="/img/login/Title.png" alt="">
+                <img src="/img/login/Title.png" alt="Crypto Donation System">
             </div>
             <form id="loginform" action="/login" method="post">
                 <div class="login-form-input">
                     <div class="label-container" id="labelcontainerusername">
                         <div><label for="email">EMAIL</label></div>
-                        <div class="form-error-email"></div>
+                        <div class="form-error"></div>
                     </div>
-                    <input type="email" name="email" id="email" autocomplete="off" autofocus="on">
+                    <input type="text" name="email" id="email" autocomplete="off" autofocus="on">
                 </div>
                 <div class="login-form-input">
                     <div class="label-container" id="labelcontainerpassword">
                         <div><label for="password">PASSWORD</label></div>
-                        <div class="form-error-pass"></div>
+                        <div class="form-error"></div>
                     </div>
                     <input type="password" name="password" id="password">
                     <div>
@@ -36,17 +35,11 @@
                     </div>
                 </div>
             </form>
-            <h2>DON'T HAVE AN ACCOUNT? <a href="/">REGISTER</a></h2>
+            <h2>DON'T HAVE AN ACCOUNT? <a href="/register">REGISTER</a></h2>
         </div>
-    </div>
-    <div class="purpleBlock">
-    </div>
-    <div class="art">
-        <img src="/img/login/Computer.png" alt="">
-    </div>
-    <div class="stick">
-        <img src="/img/login/stick.png" alt="">
-    </div>
+        <div class="art-container">
+            <img src="/img/login/Computer.png" alt="Computer">
+        </div>
     </div>
     <script src="/js/login.js"></script>
 </body>
