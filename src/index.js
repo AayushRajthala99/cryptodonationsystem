@@ -9,7 +9,8 @@ require("dotenv").config();
 const {
   loginRouter,
   dashboardRouter,
-  registerRouter
+  registerRouter,
+  changepasswordRouter
 } = require("./routers");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
@@ -31,6 +32,7 @@ app.use(
 app.use("/", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/register", registerRouter);
+app.use("/changepassword", changepasswordRouter);
 
 app.listen(process.env.APP_PORT || config.app.port, () => {
   console.log(
