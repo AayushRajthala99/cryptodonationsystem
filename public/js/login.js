@@ -1,6 +1,7 @@
 "use strict";
 
 const loginForm = document.querySelector("#loginform");
+console.log(loginForm);
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -17,7 +18,6 @@ function loginFormValidation() {
 
   //Login Form Value Acquisition...
   let email = loginForm.querySelector("#email");
-
   let password = loginForm.querySelector("#password");
 
   let emailNameValue = email.value.trim();
@@ -40,6 +40,7 @@ function loginFormValidation() {
     passwordErrorFlag = true;
     setErrorFor(password, "* PASSWORD REQUIRED!");
   } else {
+    passwordErrorFlag=false;
     setSuccessFor(password);
   }
 
