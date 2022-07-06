@@ -23,7 +23,7 @@ async function view(req,res) {
       res.redirect('/dashboard');
     }
   } catch (error) {
-    res.send("ERROR LOADING Dashboard Page");
+    res.send("This User Doesn't Exist");
   }
 }
 

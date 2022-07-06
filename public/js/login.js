@@ -1,12 +1,10 @@
 "use strict";
 
 const loginForm = document.querySelector("#loginform");
-console.log(loginForm);
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const correctSubmissionFlag = loginFormValidation();
-  console.log(correctSubmissionFlag);
 
   if (correctSubmissionFlag) {
     loginForm.submit();
