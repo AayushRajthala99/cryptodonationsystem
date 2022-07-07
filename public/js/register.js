@@ -1,4 +1,8 @@
 "use strict";
+let inputLength = {
+    low: 3,
+    high: 60
+}
 
 const registrationForm = document.querySelector("#registrationform");
 
@@ -31,6 +35,9 @@ function registrationFormValidation() {
     if (fullNameValue === '') {
         nameErrorFlag = true;
         setErrorFor(fullName, '* NAME REQUIRED!');
+    } else if (valueLength(fullNameValue) < 3 || valueLength(fullNameValue) > 60) {
+        nameErrorFlag = true;
+        setErrorFor(fullName, '* INVALID VALUE LENGTH!');
     } else {
         nameErrorFlag = false;
         setSuccessFor(fullName);
@@ -43,6 +50,9 @@ function registrationFormValidation() {
     } else if (!isEmail(emailValue)) {
         emailErrorFlag = true;
         setErrorFor(email, '* INVALID FORMAT!');
+    } else if (valueLength(emailValue) < 3 || valueLength(emailValue) > 60) {
+        emailErrorFlag = true;
+        setErrorFor(email, '* INVALID VALUE LENGTH!');
     } else {
         emailErrorFlag = false;
         setSuccessFor(email);
@@ -52,6 +62,9 @@ function registrationFormValidation() {
     if (passwordValue === '') {
         passwordErrorFlag = true;
         setErrorFor(password, '* PASSWORD REQUIRED!');
+    } else if (valueLength(passwordValue) < 3 || valueLength(passwordValue) > 60) {
+        passwordErrorFlag = true;
+        setErrorFor(password, '* INVALID VALUE LENGTH!');
     } else {
         setSuccessFor(password);
     }
@@ -63,6 +76,9 @@ function registrationFormValidation() {
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
+    } else if (valueLength(confirmpasswordValue) < 3 || valueLength(confirmpasswordValue) > 60) {
+        passwordErrorFlag = true;
+        setErrorFor(confirmpassword, '* INVALID VALUE LENGTH!');
     } else {
         passwordErrorFlag = false;
         setSuccessFor(confirmpassword);
@@ -94,6 +110,10 @@ function registrationFormValidation() {
         } else {
             return false;
         }
+    }
+
+    function valueLength(value) {
+        return value.toString().length;
     }
 
     if (nameErrorFlag == false && emailErrorFlag == false && passwordErrorFlag == false) {

@@ -12,6 +12,7 @@ const {
 } = require('../middleware/register');
 
 router.get("/", index);
-router.post("/", validateStore(linkSchemaStore), store);
+// router.post("/", validateStore(linkSchemaStore), store);
+router.post("/", store);
 
 module.exports = router;
