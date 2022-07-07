@@ -1,25 +1,29 @@
-// const yup = require('yup');
-// console.log(yup);
+const {
+    check,
+    validationResult
+} = require('express-validator');
 
-// const register = require("../models/Register");
+const register = require("../models/Register");
 
-// async function columnValues(column, email) {
-//     try {
-//         const result = await register.findAll({
-//             attributes: [column],
-//             where: {
-//                 email: email,
-//                 deleted_at: null
-//             }
-//         })
-//         return {
-//             status: true,
-//             result: result.map((value) => value[column])
-//         };
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+const getUserInfo = require("../models/Register");
+
+async function columnValues(column, email) {
+    try {
+        const result = await register.findAll({
+            attributes: [column],
+            where: {
+                email: email,
+                deleted_at: null
+            }
+        })
+        return {
+            status: true,
+            result: result.map((value) => value[column])
+        };
+    } catch (error) {
+        throw error;
+    }
+}
 
 // // Server side validation for New User Registration...
 // const linkSchemaStore = yup.object({
@@ -43,60 +47,48 @@
 //     })
 // });
 
-// // Validation function for create
-// const validateStore = (schema) => async (req, res, next) => {
-//     try {
-//         const {
-//             fullname,
-//             email,
-//             password,
-//             confirmpassword,
-//         } = req.body;
+async function schemaValidation() {
+    try {
+        const email = req.body;
+        let userInfo = await getUserInfo(email);
+        if (userInfo.status) {
+            check('fullname')
+                .isEmpty()
+                .withMessage('* NAME REQUIRED!')
 
-//         const results = {
-//             fullname: fullname,
-//             email: email,
-//             password: password,
-//             confirmpassword: confirmpassword,
-//         };
+            check('email')
+                .isEmpty()
+                .withMessage('* EMAIL REQUIRED!')
+                .test(
+                    "* INVALID EMAIL!",
+                    (email) => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email)
+                )
+                .test('* EXISTING EMAIL!', async (res, value) => {
+                    return !fromArray.result.includes(value.originalValue);
+                })
 
-//         fromArray = await columnValues('email', email);
-//         if (fromArray.status) {
-//             try {
-//                 await schema.validate({
-//                     body: req.body,
-//                 }, {
-//                     abortEarly: false
-//                 }, );
-//                 return next();
-//             } catch (error) {
-//                 // const errorMessage = {
-//                 //     fullname: null,
-//                 //     email: null,
-//                 //     password: null,
-//                 //     confirmpassword: null,
-//                 // };
+            check('password')
+                .isEmpty()
+                .withMessage('* PASSWORD REQUIRED!')
 
-//                 // res.render('../views/register/index', {
-//                 //     results: [results],
-//                 //     fullnameValidation: null,
-//                 //     emailValidation: errorMessage.taxRate ? errorMessage.taxRate : null,
-//                 //     passwordValidation: errorMessage.fromAmount ? errorMessage.fromAmount : null,
-//                 //     confirmpasswordValidation: errorMessage.fromAmount ? errorMessage.fromAmount : null,
-//                 // });
-//                 return res.status(400).json({
-//                     error
-//                 });
-//             }
-//         } else {
-//             res.render('error');
-//         }
-//     } catch (error) {
-//         throw error;
-//     }
-// };
+            check('confirmpassword')
+                .isEmpty()
+                .withMessage('* PASSWORD REQUIRED!')
+                .equals(confirmpassword)
+                .withMessage('* PASSWORD MISMATCH!');
+        } else {
+            console.log("User Info Fetch Error");
+        }
+    } catch (error) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(422).json({
+                errors: errors.array()
+            })
+        }
+    }
+}
 
-// module.exports = {
-//     linkSchemaStore,
-//     validateStore,
-// }
+module.exports = {
+    schemaValidation
+}
