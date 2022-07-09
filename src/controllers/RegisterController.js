@@ -7,7 +7,24 @@ const {
 
 async function index(req, res, next) {
   try {
-    res.render("../views/register/index");
+    
+    const result = {
+      fullname: null,
+      email: null,
+      password: null,
+      confirmpassword: null,
+    }
+
+    const errorMessage = {
+      fullname: null,
+      email: null,
+      password: null,
+      confirmpassword: null,
+    };
+
+    res.render("../views/register/index", {
+      result: result, errorMessage: errorMessage
+    });
   } catch (err) {
     res.send("ERROR LOADING SIGNUP PAGE");
   }

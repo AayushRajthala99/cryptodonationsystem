@@ -1,52 +1,38 @@
 const yup = require('yup');
 
-const register = require("../models/Register.model");
+const {
+    getColumnInfo,
+} = require('../models/Register.model');
 
-async function columnValues(column, email) {
-    try {
-        const result = await register.findAll({
-            attributes: [column],
-            where: {
-                email: email,
-                deleted_at: null
-            }
-        })
-        return {
-            status: true,
-            result: result.map((value) => value[column])
-        };
-    } catch (error) {
-        throw error;
-    }
-}
-
-// Server side validation for New User Registration...
+//Validation Schema for User Registration...
 const linkSchemaStore = yup.object({
     body: yup.object({
         fullname: yup
             .string()
             .required('* NAME REQUIRED!'),
+        
         email: yup
             .string()
-            .test(
-                "* INVALID EMAIL!",
+            .required('* EMAIL REQUIRED!')
+            .test("* INVALID EMAIL!",
                 (email) => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email)
             )
             .test('* EXISTING EMAIL!', async (res, value) => {
-                return !fromArray.result.includes(value.originalValue);
-            })
-            .required('* EMAIL REQUIRED!'),
+                return !userArray.result.includes(value.originalValue);
+            }),
+        
         password: yup
             .string()
             .required('* PASSWORD REQUIRED!'),
+        
         confirmpassword: yup
             .string()
             .required('* PASSWORD REQUIRED')
-            .matches([yup.ref('password')], '* PASSWORD MISMATCH!')
+            .matches([yup.ref('password')], '* PASSWORD MISMATCH!'),
     })
 });
 
-// Validation function for create
+// Validation Function for Registration Store...
 const validateStore = (schema) => async (req, res, next) => {
     try {
         const {
@@ -63,8 +49,9 @@ const validateStore = (schema) => async (req, res, next) => {
             confirmpassword: confirmpassword,
         };
 
-        fromArray = await columnValues('email', email);
-        if (fromArray.status) {
+        userArray = await getColumnInfo('email', email);
+        // console.log("USER ARRAY === ",userArray);
+        if (userArray.status) {
             try {
                 await schema.validate({
                     body: req.body,
@@ -73,20 +60,20 @@ const validateStore = (schema) => async (req, res, next) => {
                 }, );
                 return next();
             } catch (error) {
-                const errorMessage = {
+                let errorMessage = {
                     fullname: null,
                     email: null,
                     password: null,
                     confirmpassword: null,
                 };
-                console.log(error);
+                // console.log(error.inner);
 
                 res.render('../views/register/index', {
-                    results: [results],
+                    results: [results], errorMessage : errorMessage
                 });
-                return res.status(400).json({
-                    error
-                });
+                // return res.status(400).json({
+                //     error
+                // });
             }
         } else {
             res.render('error');
