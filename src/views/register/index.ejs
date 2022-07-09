@@ -21,30 +21,46 @@
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontainerfullname">
                         <div><label for="fullname">FULL NAME</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.fullname) { %>
+                            <%= errorMessage.fullname %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="text" name="fullname" id="fullname">
+                    <input type="text" name="fullname" id="fullname" value="<%= result.fullname %>">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontaineremail">
                         <div><label for="email">EMAIL</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.email) { %>
+                            <%= errorMessage.email %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="email" id="email" value="<%= result.email %>">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontainerpassword">
                         <div><label for="password">PASSWORD</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.password) { %>
+                            <%= errorMessage.password %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" value="<%= result.password %>">
                 </div>
                 <div class="registration-form-input">
                     <div class="label-container" id="labelcontainerconfirmpassword">
                         <div><label for="confirmpassword">CONFIRM PASSWORD</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.confirmpassword) { %>
+                            <%= errorMessage.confirmpassword %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="password" name="confirmpassword" id="confirmpassword">
+                    <input type="password" name="confirmpassword" id="confirmpassword" value="<%= result.confirmpassword %>">
                 </div>
                 <div>
                     <button type="submit" class="submit-button">REGISTER</button>
