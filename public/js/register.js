@@ -69,7 +69,7 @@ function registrationFormValidation() {
     }
 
     //Validation for Confirm Password...
-    if (passwordValue && confirmpasswordValue === '') {
+    if ((passwordValue && confirmpasswordValue === '') || (confirmpasswordValue === '')) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {

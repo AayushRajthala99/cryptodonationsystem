@@ -7,11 +7,11 @@ const {
 } = require("../controllers/RegisterController");
 
 const {
-    schemaValidation
+    linkSchemaStore,
+    validateStore,
 } = require('../middleware/register');
 
 router.get("/", index);
-router.post("/", schemaValidation, store);
-// router.post("/", store);
+router.post("/", validateStore(linkSchemaStore), store);
 
 module.exports = router;
