@@ -3,10 +3,15 @@ const router = express.Router();
 
 const {
     index,
-    create,
+    store,
 } = require("../controllers/RegisterController");
 
+const {
+    linkSchemaStore,
+    validateStore,
+} = require('../middleware/register');
+
 router.get("/", index);
-router.post("/", create);
+router.post("/", validateStore(linkSchemaStore), store);
 
 module.exports = router;

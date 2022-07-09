@@ -13,27 +13,31 @@ async function index(req, res, next) {
   }
 }
 
-async function create(req, res, next) {
-  const {
-    fullname,
-    email,
-    password,
-    confirmpassword,
-  } = req.body;
+async function store(req, res, next) {
+  try {
+    const {
+      fullname,
+      email,
+      password,
+      confirmpassword,
+    } = req.body;
 
-  if (password === confirmpassword) {
-    const result = await userRegistration(fullname, email, confirmpassword);
-    if (result.status) {
-      res.redirect('/');
+    if (password === confirmpassword) {
+      const result = await userRegistration(fullname, email, confirmpassword);
+      if (result.status) {
+        res.redirect('/');
+      } else {
+        console.log("Something Went Wrong While Registering User");
+      }
     } else {
-      console.log("Something Went Wrong While Registering User");
+      console.log("Password Mismatch");
     }
-  } else {
-    console.log("Password Mismatch");
+  } catch (err) {
+    res.send("ERROR REGISTERING USER");
   }
 }
 
 module.exports = {
   index,
-  create,
+  store,
 };
