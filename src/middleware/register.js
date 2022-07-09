@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-const register = require("../models/Register");
+const register = require("../models/Register.model");
 
 async function columnValues(column, email) {
     try {

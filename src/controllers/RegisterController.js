@@ -2,7 +2,7 @@ const db = require('../../config/mysql');
 
 const {
   userRegistration,
-} = require('../models/Register');
+} = require('../models/Register.model');
 
 
 async function index(req, res, next) {
