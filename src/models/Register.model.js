@@ -69,7 +69,26 @@ const userRegistration = async (fullname, email, password) => {
     }
 }
 
+const getColumnInfo = async (column, email) => {
+    try {
+        const result = await promisifiedQuery(
+            `SELECT ${column} FROM user where email='${email}' AND deleted_at is NULL;`
+        )
+        return {
+            status: true,
+            result: result.map((value) => value[column])
+        };
+    } catch (error) {
+        console.log("User Info Fetch Error: ", error);
+        return {
+            status: false,
+            error: error
+        };
+    }
+}
+
 module.exports = {
     getUserInfo,
     userRegistration,
+    getColumnInfo,
 }

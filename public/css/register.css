@@ -13,8 +13,8 @@ h1 {
 }
 
 .art-container img {
-    height: 880px;
-    width: 880px;
+    height: 820px;
+    aspect-ratio: auto;
     position: absolute;
     left: 150px;
 }
