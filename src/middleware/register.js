@@ -13,12 +13,12 @@ const linkSchemaStore = yup.object({
 
         email: yup
             .string()
-            .required('* EMAIL REQUIRED!')
-            .test("* INVALID EMAIL!",
-                (value) => {/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value)}
+            .matches(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                "* INVALID FORMAT!"
             )
-            .test('* EXISTING EMAIL!', async (res, value) => {
-                return !userArray.result.includes(value);
+            .required('* EMAIL REQUIRED!')
+            .test('* EXISTING EMAIL!', '* EXISTING EMAIL!', () => {
+                return userArray.result.length === 0;
             }),
 
         password: yup
@@ -27,8 +27,8 @@ const linkSchemaStore = yup.object({
 
         confirmpassword: yup
             .string()
-            .required('* PASSWORD REQUIRED')
-            .matches([yup.ref('password')], '* PASSWORD MISMATCH!'),
+            .oneOf([yup.ref('password'), null], '* PASSWORD MISMATCH!')
+            .required('* PASSWORD REQUIRED!'),
     })
 });
 
@@ -68,17 +68,13 @@ const validateStore = (schema) => async (req, res, next) => {
 
                 // Storing error message
                 error.inner.forEach((e) => {
-                    console.log(e.errors[0]);
                     if (e.path.slice(5) == 'fullname') {
                         errorMessage.fullname = e.errors[0];
-                    }
-                    if (e.path.slice(5) == 'email') {
+                    } else if (e.path.slice(5) == 'email') {
                         errorMessage.email = e.errors[0];
-                    }
-                    if (e.path.slice(5) == 'password') {
+                    } else if (e.path.slice(5) == 'password') {
                         errorMessage.password = e.errors[0];
-                    }
-                    if (e.path.slice(5) == 'confirmpassword') {
+                    } else if (e.path.slice(5) == 'confirmpassword') {
                         errorMessage.confirmpassword = e.errors[0];
                     }
                 });
