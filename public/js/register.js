@@ -69,9 +69,13 @@ function registrationFormValidation() {
     }
 
     //Validation for Confirm Password...
-    if ((passwordValue && confirmpasswordValue === '') || (confirmpasswordValue === '')) {
+    if (confirmpasswordValue === '') {
         passwordErrorFlag = true;
-        setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
+        if (passwordValue) {
+            setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
+        } else {
+            setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
+        }
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
