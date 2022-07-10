@@ -1,11 +1,14 @@
 "use strict";
+let inputLength = {
+    low: 3,
+    high: 60
+}
 
 const registrationForm = document.querySelector("#registrationform");
 
 registrationForm.addEventListener('submit', event => {
     event.preventDefault();
     const correctSubmissionFlag = registrationFormValidation();
-    console.log(correctSubmissionFlag);
 
     if (correctSubmissionFlag) {
         registrationForm.submit();
@@ -31,6 +34,9 @@ function registrationFormValidation() {
     if (fullNameValue === '') {
         nameErrorFlag = true;
         setErrorFor(fullName, '* NAME REQUIRED!');
+    } else if (valueLength(fullNameValue) < inputLength.low || valueLength(fullNameValue) > inputLength.high) {
+        nameErrorFlag = true;
+        setErrorFor(fullName, '* INVALID VALUE LENGTH!');
     } else {
         nameErrorFlag = false;
         setSuccessFor(fullName);
@@ -42,7 +48,10 @@ function registrationFormValidation() {
         setErrorFor(email, '* EMAIL REQUIRED!');
     } else if (!isEmail(emailValue)) {
         emailErrorFlag = true;
-        setErrorFor(email, '* INVALID FORMAT');
+        setErrorFor(email, '* INVALID FORMAT!');
+    } else if (valueLength(emailValue) < inputLength.low || valueLength(emailValue) > inputLength.high) {
+        emailErrorFlag = true;
+        setErrorFor(email, '* INVALID VALUE LENGTH!');
     } else {
         emailErrorFlag = false;
         setSuccessFor(email);
@@ -52,17 +61,23 @@ function registrationFormValidation() {
     if (passwordValue === '') {
         passwordErrorFlag = true;
         setErrorFor(password, '* PASSWORD REQUIRED!');
+    } else if (valueLength(passwordValue) < inputLength.low || valueLength(passwordValue) > inputLength.high) {
+        passwordErrorFlag = true;
+        setErrorFor(password, '* INVALID VALUE LENGTH!');
     } else {
         setSuccessFor(password);
     }
 
     //Validation for Confirm Password...
-    if (passwordValue && confirmpasswordValue === '') {
+    if ((passwordValue && confirmpasswordValue === '') || (confirmpasswordValue === '')) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
-        setErrorFor(confirmpassword, '* PASSWORD MISMATCH');
+        setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
+    } else if (valueLength(confirmpasswordValue) < inputLength.low || valueLength(confirmpasswordValue) > inputLength.high) {
+        passwordErrorFlag = true;
+        setErrorFor(confirmpassword, '* INVALID VALUE LENGTH!');
     } else {
         passwordErrorFlag = false;
         setSuccessFor(confirmpassword);
@@ -94,6 +109,10 @@ function registrationFormValidation() {
         } else {
             return false;
         }
+    }
+
+    function valueLength(value) {
+        return value.toString().length;
     }
 
     if (nameErrorFlag == false && emailErrorFlag == false && passwordErrorFlag == false) {
