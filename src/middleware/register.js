@@ -10,21 +10,21 @@ const linkSchemaStore = yup.object({
         fullname: yup
             .string()
             .required('* NAME REQUIRED!'),
-        
+
         email: yup
             .string()
             .required('* EMAIL REQUIRED!')
             .test("* INVALID EMAIL!",
-                (email) => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email)
+                (value) => {/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value)}
             )
             .test('* EXISTING EMAIL!', async (res, value) => {
-                return !userArray.result.includes(value.originalValue);
+                return !userArray.result.includes(value);
             }),
-        
+
         password: yup
             .string()
             .required('* PASSWORD REQUIRED!'),
-        
+
         confirmpassword: yup
             .string()
             .required('* PASSWORD REQUIRED')
@@ -42,7 +42,7 @@ const validateStore = (schema) => async (req, res, next) => {
             confirmpassword,
         } = req.body;
 
-        const results = {
+        const result = {
             fullname: fullname,
             email: email,
             password: password,
@@ -50,7 +50,6 @@ const validateStore = (schema) => async (req, res, next) => {
         };
 
         userArray = await getColumnInfo('email', email);
-        // console.log("USER ARRAY === ",userArray);
         if (userArray.status) {
             try {
                 await schema.validate({
@@ -60,20 +59,34 @@ const validateStore = (schema) => async (req, res, next) => {
                 }, );
                 return next();
             } catch (error) {
-                let errorMessage = {
+                const errorMessage = {
                     fullname: null,
                     email: null,
                     password: null,
                     confirmpassword: null,
                 };
-                // console.log(error.inner);
+
+                // Storing error message
+                error.inner.forEach((e) => {
+                    console.log(e.errors[0]);
+                    if (e.path.slice(5) == 'fullname') {
+                        errorMessage.fullname = e.errors[0];
+                    }
+                    if (e.path.slice(5) == 'email') {
+                        errorMessage.email = e.errors[0];
+                    }
+                    if (e.path.slice(5) == 'password') {
+                        errorMessage.password = e.errors[0];
+                    }
+                    if (e.path.slice(5) == 'confirmpassword') {
+                        errorMessage.confirmpassword = e.errors[0];
+                    }
+                });
 
                 res.render('../views/register/index', {
-                    results: [results], errorMessage : errorMessage
+                    result: result,
+                    errorMessage: errorMessage
                 });
-                // return res.status(400).json({
-                //     error
-                // });
             }
         } else {
             res.render('error');
