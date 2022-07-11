@@ -45,3 +45,9 @@ h1 {
 .submit-button {
     width: 550px;
 }
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    vertical-align: center;
+}
