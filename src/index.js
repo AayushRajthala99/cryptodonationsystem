@@ -34,6 +34,11 @@ app.use("/dashboard", dashboardRouter);
 app.use("/register", registerRouter);
 app.use("/changepassword", changepasswordRouter);
 
+//404 page not found error for non existing routes
+app.get("*", function (req, res) {
+	res.render("error404");
+});
+
 app.listen(process.env.APP_PORT || config.app.port, () => {
   console.log(
     `Server is up and running on port ${

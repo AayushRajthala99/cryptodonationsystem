@@ -72,7 +72,7 @@ const userRegistration = async (fullname, email, password) => {
 const getColumnInfo = async (column, email) => {
     try {
         const result = await promisifiedQuery(
-            `SELECT '${column}' FROM user where email='${email}' AND deleted_at is NULL;`
+            `SELECT ${column} FROM user where email='${email}' AND deleted_at is NULL;`
         )
         return {
             status: true,
