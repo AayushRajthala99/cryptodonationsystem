@@ -18,7 +18,7 @@ We assume that the user wants to perform crypto-donation via highly secure and e
 ## :wrench: Install
 
 ### :gear: Pre-requisites
-### <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/NodeJS-Dark.svg" style="height: 30px;aspect-ratio:auto;"/> NodeJS & :npm: NPM
+### <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/NodeJS-Dark.svg" style="height: 30px;aspect-ratio:auto;"/> NodeJS & NPM
 ~~~shell
 https://nodejs.org/en/download/
 ~~~
