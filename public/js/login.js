@@ -5,7 +5,7 @@ const loginForm = document.querySelector("#loginform");
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const correctSubmissionFlag = loginFormValidation();
-  console.log(correctSubmissionFlag);
+
 
   if (correctSubmissionFlag) {
     loginForm.submit();
