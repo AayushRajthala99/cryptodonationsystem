@@ -1,4 +1,8 @@
 "use strict";
+let inputLength = {
+  low: 3,
+  high: 60
+}
 
 const loginForm = document.querySelector("#loginform");
 
@@ -28,9 +32,9 @@ function loginFormValidation() {
   } else if (!isEmail(emailNameValue)) {
     emailErrorFlag = true;
     setErrorFor(email, "* INVALID FORMAT");
-  } else if (lowLength(emailNameValue)) {
+  } else if (valueLength(emailValue) < inputLength.low || valueLength(emailValue) > inputLength.high) {
     emailErrorFlag = true;
-    setErrorFor(email, "* Value Length");
+    setErrorFor(password, '* INVALID VALUE LENGTH!');
   } else {
     emailErrorFlag = false;
     setSuccessFor(email);
@@ -40,6 +44,9 @@ function loginFormValidation() {
   if (passwordValue === "") {
     passwordErrorFlag = true;
     setErrorFor(password, "* PASSWORD REQUIRED!");
+  } else if (valueLength(passwordValue) < inputLength.low || valueLength(passwordValue) > inputLength.high) {
+    passwordErrorFlag = true;
+    setErrorFor(password, '* INVALID VALUE LENGTH!');
   } else {
     passwordErrorFlag = false;
     setSuccessFor(password);
@@ -77,6 +84,10 @@ function loginFormValidation() {
     return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
       email
     );
+  }
+
+  function valueLength(value) {
+    return value.toString().length;
   }
 
   if (emailErrorFlag == false && passwordErrorFlag == false) {
