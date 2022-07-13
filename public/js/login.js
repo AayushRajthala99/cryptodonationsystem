@@ -5,7 +5,6 @@ const loginForm = document.querySelector("#loginform");
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const correctSubmissionFlag = loginFormValidation();
-  console.log(correctSubmissionFlag);
 
   if (correctSubmissionFlag) {
     loginForm.submit();
@@ -17,7 +16,6 @@ function loginFormValidation() {
 
   //Login Form Value Acquisition...
   let email = loginForm.querySelector("#email");
-
   let password = loginForm.querySelector("#password");
 
   let emailNameValue = email.value.trim();
@@ -30,6 +28,9 @@ function loginFormValidation() {
   } else if (!isEmail(emailNameValue)) {
     emailErrorFlag = true;
     setErrorFor(email, "* INVALID FORMAT");
+  } else if (lowLength(emailNameValue)) {
+    emailErrorFlag = true;
+    setErrorFor(email, "* Value Length");
   } else {
     emailErrorFlag = false;
     setSuccessFor(email);
@@ -40,6 +41,7 @@ function loginFormValidation() {
     passwordErrorFlag = true;
     setErrorFor(password, "* PASSWORD REQUIRED!");
   } else {
+    passwordErrorFlag = false;
     setSuccessFor(password);
   }
 
@@ -49,11 +51,28 @@ function loginFormValidation() {
     errordiv.innerText = message;
   }
 
+  function lowLength(value) {
+    value = String(value);
+    if (value.length < 3) {
+      return true;
+    }
+    return false;
+  }
+
+  function highLength(value) {
+    value = String(value);
+    if (value.length > 60) {
+      return true;
+    }
+    return false;
+  }
+
   function setSuccessFor(input) {
     const formControl = loginForm.querySelector("#labelcontainer" + input.id);
     const errordiv = formControl.querySelector(".form-error");
     errordiv.innerText = "";
   }
+
   function isEmail(email) {
     return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
       email
