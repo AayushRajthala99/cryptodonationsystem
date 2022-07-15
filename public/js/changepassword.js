@@ -53,7 +53,7 @@ function changepasswordFormValidation() {
     //Validation for Confirm Password...
     if (confirmpasswordValue === '') {
         confirmpasswordErrorFlag = true;
-        if (confirmpasswordValue) {
+        if (newpasswordValue) {
             setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
         } else {
             setErrorFor(confirmpassword, '* PASSWORD REQUIRED!');
