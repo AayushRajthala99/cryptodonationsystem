@@ -92,7 +92,7 @@ const validateStore = (schema) => async (req, res, next) => {
                     }
                 });
 
-                res.render('../views/register/index', {
+                res.render('register/index', {
                     result: result,
                     errorMessage: errorMessage
                 });

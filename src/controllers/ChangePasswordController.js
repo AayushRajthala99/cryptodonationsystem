@@ -14,7 +14,7 @@ async function index(req, res) {
       confirmpassword: null,
     };
 
-    res.render("../views/changepassword", {
+    res.render('changepassword', {
       result: result,
       errorMessage: errorMessage
     });
@@ -26,7 +26,9 @@ async function index(req, res) {
 }
 
 async function update(req, res, next) {
-  res.send("HELLO WORLD");
+  res.render('error', {
+    error: 'PASSWORD UPDATED! Just Kidding'
+  });
 }
 
 module.exports = {
