@@ -14,14 +14,14 @@ const linkSchemaStore = yup.object({
     body: yup.object({
         fullname: yup
             .string()
-            .min(inputLength.min,'* INVALID VALUE LENGTH!')
-            .max(inputLength.max,'* INVALID VALUE LENGTH!')
+            .min(inputLength.min, '* INVALID VALUE LENGTH!')
+            .max(inputLength.max, '* INVALID VALUE LENGTH!')
             .required('* NAME REQUIRED!'),
 
         email: yup
             .string()
-            .min(inputLength.min,'* INVALID VALUE LENGTH!')
-            .max(inputLength.max,'* INVALID VALUE LENGTH!')
+            .min(inputLength.min, '* INVALID VALUE LENGTH!')
+            .max(inputLength.max, '* INVALID VALUE LENGTH!')
             .matches(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
                 "* INVALID FORMAT!"
             )
@@ -32,14 +32,14 @@ const linkSchemaStore = yup.object({
 
         password: yup
             .string()
-            .min(inputLength.min,'* INVALID VALUE LENGTH!')
-            .max(inputLength.max,'* INVALID VALUE LENGTH!')
+            .min(inputLength.min, '* INVALID VALUE LENGTH!')
+            .max(inputLength.max, '* INVALID VALUE LENGTH!')
             .required('* PASSWORD REQUIRED!'),
 
         confirmpassword: yup
             .string()
-            .min(inputLength.min,'* INVALID VALUE LENGTH!')
-            .max(inputLength.max,'* INVALID VALUE LENGTH!')
+            .min(inputLength.min, '* INVALID VALUE LENGTH!')
+            .max(inputLength.max, '* INVALID VALUE LENGTH!')
             .oneOf([yup.ref('password'), null], '* PASSWORD MISMATCH!')
             .required('* PASSWORD REQUIRED!'),
     })

@@ -22,16 +22,16 @@ function loginFormValidation() {
   let email = loginForm.querySelector("#email");
   let password = loginForm.querySelector("#password");
 
-  let emailNameValue = email.value.trim();
+  let emailValue = email.value.trim();
   let passwordValue = password.value.trim();
 
-  //Validation for usernames...
-  if (emailNameValue === "") {
+  //Validation for Email...
+  if (emailValue === "") {
     emailErrorFlag = true;
     setErrorFor(email, "* EMAIL REQUIRED!");
-  } else if (!isEmail(emailNameValue)) {
+  } else if (!isEmail(emailValue)) {
     emailErrorFlag = true;
-    setErrorFor(email, "* INVALID FORMAT");
+    setErrorFor(email, "* INVALID FORMAT!");
   } else if (valueLength(emailValue) < inputLength.low || valueLength(emailValue) > inputLength.high) {
     emailErrorFlag = true;
     setErrorFor(password, '* INVALID VALUE LENGTH!');
@@ -56,22 +56,6 @@ function loginFormValidation() {
     const formControl = loginForm.querySelector("#labelcontainer" + input.id);
     const errordiv = formControl.querySelector(".form-error");
     errordiv.innerText = message;
-  }
-
-  function lowLength(value) {
-    value = String(value);
-    if (value.length < 3) {
-      return true;
-    }
-    return false;
-  }
-
-  function highLength(value) {
-    value = String(value);
-    if (value.length > 60) {
-      return true;
-    }
-    return false;
   }
 
   function setSuccessFor(input) {

@@ -7,7 +7,6 @@ const {
 
 async function index(req, res, next) {
   try {
-    
     const result = {
       fullname: null,
       email: null,

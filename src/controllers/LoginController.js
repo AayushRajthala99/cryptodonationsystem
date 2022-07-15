@@ -1,6 +1,6 @@
 const {
   getLoginInfo,
-} = require('../models/Login');
+} = require('../models/Login.model');
 
 async function index(req, res) {
   try {
@@ -18,7 +18,7 @@ async function view(req,res) {
     } = req.body;
     
     const loginInfo = await getLoginInfo(email);
-    
+    console.log(loginInfo.result);
     if(loginInfo.status && (email == loginInfo.result[0].email) && (password == loginInfo.result[0].password)){
       res.redirect('/dashboard');
     }
