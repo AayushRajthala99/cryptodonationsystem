@@ -1,3 +1,5 @@
+const { logger } = require("../utils/logger");
+
 const {
   getLoginInfo,
 } = require('../models/Login.model');
@@ -6,6 +8,7 @@ async function index(req, res) {
   try {
     res.render('login');
   } catch (err) {
+    logger.error(`${err}`);
     res.render('error', {
       error: "ERROR LOADING LOGIN PAGE"
     });
@@ -25,6 +28,7 @@ async function view(req, res) {
       res.redirect('/dashboard');
     }
   } catch (error) {
+    logger.error(`${err}`);
     res.render('error', {
       error: "This User Doesn't Exist"
     });
