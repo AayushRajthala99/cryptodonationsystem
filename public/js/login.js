@@ -1,4 +1,8 @@
 "use strict";
+let inputLength = {
+  low: 3,
+  high: 60
+}
 
 const loginForm = document.querySelector("#loginform");
 
@@ -18,19 +22,19 @@ function loginFormValidation() {
   let email = loginForm.querySelector("#email");
   let password = loginForm.querySelector("#password");
 
-  let emailNameValue = email.value.trim();
+  let emailValue = email.value.trim();
   let passwordValue = password.value.trim();
 
-  //Validation for usernames...
-  if (emailNameValue === "") {
+  //Validation for Email...
+  if (emailValue === "") {
     emailErrorFlag = true;
     setErrorFor(email, "* EMAIL REQUIRED!");
-  } else if (!isEmail(emailNameValue)) {
+  } else if (!isEmail(emailValue)) {
     emailErrorFlag = true;
-    setErrorFor(email, "* INVALID FORMAT");
-  } else if (lowLength(emailNameValue)) {
+    setErrorFor(email, "* INVALID FORMAT!");
+  } else if (valueLength(emailValue) < inputLength.low || valueLength(emailValue) > inputLength.high) {
     emailErrorFlag = true;
-    setErrorFor(email, "* Value Length");
+    setErrorFor(password, '* INVALID VALUE LENGTH!');
   } else {
     emailErrorFlag = false;
     setSuccessFor(email);
@@ -40,6 +44,9 @@ function loginFormValidation() {
   if (passwordValue === "") {
     passwordErrorFlag = true;
     setErrorFor(password, "* PASSWORD REQUIRED!");
+  } else if (valueLength(passwordValue) < inputLength.low || valueLength(passwordValue) > inputLength.high) {
+    passwordErrorFlag = true;
+    setErrorFor(password, '* INVALID VALUE LENGTH!');
   } else {
     passwordErrorFlag = false;
     setSuccessFor(password);
@@ -49,22 +56,6 @@ function loginFormValidation() {
     const formControl = loginForm.querySelector("#labelcontainer" + input.id);
     const errordiv = formControl.querySelector(".form-error");
     errordiv.innerText = message;
-  }
-
-  function lowLength(value) {
-    value = String(value);
-    if (value.length < 3) {
-      return true;
-    }
-    return false;
-  }
-
-  function highLength(value) {
-    value = String(value);
-    if (value.length > 60) {
-      return true;
-    }
-    return false;
   }
 
   function setSuccessFor(input) {
@@ -77,6 +68,10 @@ function loginFormValidation() {
     return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
       email
     );
+  }
+
+  function valueLength(value) {
+    return value.toString().length;
   }
 
   if (emailErrorFlag == false && passwordErrorFlag == false) {

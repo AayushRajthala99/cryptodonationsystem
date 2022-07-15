@@ -1,6 +1,6 @@
 const {
   getLoginInfo,
-} = require('../models/Login');
+} = require('../models/Login.model');
 
 async function index(req, res) {
   try {
