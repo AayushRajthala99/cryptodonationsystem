@@ -1,3 +1,5 @@
+const { logger } = require("../utils/logger");
+
 async function index(req, res) {
   try {
     const result = {
@@ -19,6 +21,7 @@ async function index(req, res) {
       errorMessage: errorMessage
     });
   } catch (err) {
+    logger.error(`${err}`);
     res.render('error', {
       error: 'ERROR LOADING CHANGE PASSWORD PAGE'
     });

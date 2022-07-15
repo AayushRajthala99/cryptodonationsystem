@@ -1,4 +1,8 @@
 const db = require('../../config/mysql');
+const {
+    logger
+} = require('../utils/logger');
+
 
 const promisifiedQuery = (options) => {
     return new Promise((resolve, reject) => {
@@ -22,7 +26,7 @@ const getLoginInfo = async (email) => {
             result: result
         };
     } catch (error) {
-        console.log("Login Info Fetch Error: ", error);
+        logger.error(`Login Info Error:  ${error}`);
         return {
             status: false,
             error: error
@@ -40,7 +44,7 @@ const getColumnInfo = async (column, id) => {
             result: result.map((value) => value[column])
         };
     } catch (error) {
-        console.log("User Info Fetch Error: ", error);
+        logger.error(`Column Info Fetch Error:  ${error}`);
         return {
             status: false,
             error: error
