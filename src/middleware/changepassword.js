@@ -80,7 +80,7 @@ const validateUpdate = (schema) => async (req, res, next) => {
                     }
                 });
 
-                res.render('../views/changepassword', {
+                res.render('changepassword', {
                     result: result,
                     errorMessage: errorMessage
                 });
