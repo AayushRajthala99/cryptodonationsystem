@@ -21,7 +21,7 @@ const linkSchemaStore = yup.object({
             .string()
             .min(inputLength.min, '* INVALID VALUE LENGTH!')
             .max(inputLength.max, '* INVALID VALUE LENGTH!')
-            .matches(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+            .matches(/[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?/,
                 "* INVALID FORMAT!"
             )
             .required('* EMAIL REQUIRED!')

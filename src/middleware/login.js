@@ -15,6 +15,9 @@ const linkSchemaLogin = yup.object({
       .string()
       .min(inputLength.min, "* INVALID VALUE LENGTH!")
       .max(inputLength.max, "* INVALID VALUE LENGTH!")
+      .matches(/[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?/,
+        "* INVALID FORMAT!"
+      )
       .required("* EMAIL REQUIRED!")
       .test("* USER DOESN'T EXIST!", "* USER DOESN'T EXIST!", () => {
         return userArray.result.length !== 0;
@@ -41,7 +44,7 @@ const validateLogin = (schema) => async (req, res, next) => {
       password: password,
     };
 
-    userArray = await getColumnInfo("user", "email", "email", email);
+    userArray = await getColumnInfo("login", "email", "email", email);
     if (userArray.status) {
       try {
         await schema.validate({
