@@ -1,5 +1,7 @@
 const db = require('../../config/mysql');
-const { logger } = require("../utils/logger");
+const {
+  logger
+} = require("../utils/logger");
 
 const {
   userRegistration,
@@ -26,10 +28,10 @@ async function index(req, res, next) {
       result: result,
       errorMessage: errorMessage
     });
-  } catch (err) {
-    logger.error(`${err}`);
+  } catch (error) {
+    logger.error(`REGISTRATION PAGE ERROR: ${error}`);
     res.render('error', {
-      error: "ERROR LOADING SIGNUP PAGE"
+      error: "ERROR LOADING REGISTRATION PAGE"
     });
   }
 }
@@ -45,9 +47,10 @@ async function store(req, res, next) {
     const result = await userRegistration(fullname, email, confirmpassword);
     if (result.status) {
       res.redirect('/');
+    } else {
+      throw (result.error);
     }
-  } catch (err) {
-    logger.error(`${err}`);
+  } catch (error) {
     res.render('error', {
       error: "Something Went Wrong While Registering User"
     });

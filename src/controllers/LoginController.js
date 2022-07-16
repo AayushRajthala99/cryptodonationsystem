@@ -22,8 +22,8 @@ async function index(req, res) {
       result: result,
       errorMessage: errorMessage,
     });
-  } catch (err) {
-    logger.error(`${err}`);
+  } catch (error) {
+    logger.error(`LOGIN PAGE ERROR: ${error}`);
     res.render("error", {
       error: "ERROR LOADING LOGIN PAGE",
     });
@@ -38,16 +38,16 @@ async function view(req, res) {
     } = req.body;
 
     const loginInfo = await getLoginInfo(email);
-
     if (
       loginInfo.status &&
       email == loginInfo.result[0].email &&
       password == loginInfo.result[0].password
     ) {
       res.redirect("/dashboard");
+    } else {
+      throw (loginInfo.error);
     }
   } catch (error) {
-    logger.error(`${err}`);
     res.render("error", {
       error: "This User Doesn't Exist",
     });
