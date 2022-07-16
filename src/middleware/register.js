@@ -1,13 +1,12 @@
 const yup = require('yup');
+const {
+    getColumnInfo,
+} = require('../utils/utils');
 
 let inputLength = {
     min: 3,
     max: 60
 }
-
-const {
-    getColumnInfo,
-} = require('../models/Register.model');
 
 //Validation Schema for User Registration...
 const linkSchemaStore = yup.object({
@@ -62,7 +61,7 @@ const validateStore = (schema) => async (req, res, next) => {
             confirmpassword: confirmpassword,
         };
 
-        userArray = await getColumnInfo('email', email);
+        userArray = await getColumnInfo('user', 'email', 'email', email);
         if (userArray.status) {
             try {
                 await schema.validate({
@@ -97,8 +96,6 @@ const validateStore = (schema) => async (req, res, next) => {
                     errorMessage: errorMessage
                 });
             }
-        } else {
-            res.render('error');
         }
     } catch (error) {
         throw error;

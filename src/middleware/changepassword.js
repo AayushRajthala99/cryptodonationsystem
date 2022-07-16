@@ -1,13 +1,12 @@
 const yup = require('yup');
+const {
+    getColumnInfo,
+} = require('../utils/utils');
 
 let inputLength = {
     min: 3,
     max: 60
 }
-
-const {
-    getColumnInfo,
-} = require('../models/ChangePassword.model');
 
 //Validation Schema for Change Password...
 const linkSchemaUpdate = yup.object({
@@ -53,41 +52,38 @@ const validateUpdate = (schema) => async (req, res, next) => {
             confirmpassword: confirmpassword,
         };
 
-        // userArray = await getColumnInfo('user_id', id);
+        // userArray = await getColumnInfo('login', 'user_id', 'user_id', id);
         // if (userArray.status) {
-            try {
-                await schema.validate({
-                    body: req.body,
-                }, {
-                    abortEarly: false
-                }, );
-                return next();
-            } catch (error) {
-                const errorMessage = {
-                    oldpassword: null,
-                    newpassword: null,
-                    confirmpassword: null,
-                };
+        try {
+            await schema.validate({
+                body: req.body,
+            }, {
+                abortEarly: false
+            }, );
+            return next();
+        } catch (error) {
+            const errorMessage = {
+                oldpassword: null,
+                newpassword: null,
+                confirmpassword: null,
+            };
 
-                // Storing error message...
-                error.inner.forEach((e) => {
-                    if (e.path.slice(5) == 'oldpassword') {
-                        errorMessage.oldpassword = e.errors[0];
-                    } else if (e.path.slice(5) == 'newpassword') {
-                        errorMessage.newpassword = e.errors[0];
-                    } else if (e.path.slice(5) == 'confirmpassword') {
-                        errorMessage.confirmpassword = e.errors[0];
-                    }
-                });
+            // Storing error message...
+            error.inner.forEach((e) => {
+                if (e.path.slice(5) == 'oldpassword') {
+                    errorMessage.oldpassword = e.errors[0];
+                } else if (e.path.slice(5) == 'newpassword') {
+                    errorMessage.newpassword = e.errors[0];
+                } else if (e.path.slice(5) == 'confirmpassword') {
+                    errorMessage.confirmpassword = e.errors[0];
+                }
+            });
 
-                res.render('changepassword', {
-                    result: result,
-                    errorMessage: errorMessage
-                });
-            }
-        // } else {
-        //     res.render('error');
-        // }
+            res.render('changepassword', {
+                result: result,
+                errorMessage: errorMessage
+            });
+        }
     } catch (error) {
         throw error;
     }
