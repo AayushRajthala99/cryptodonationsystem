@@ -20,16 +20,25 @@
                 <div class="login-form-input">
                     <div class="label-container" id="labelcontaineremail">
                         <div><label for="email">EMAIL</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.email) { %>
+                            <%= errorMessage.email %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="text" name="email" id="email" autocomplete="off" autofocus="on">
+                    <input type="text" name="email" id="email" autocomplete="off" autofocus="on"
+                        value="<%= result.email %>">
                 </div>
                 <div class="login-form-input">
                     <div class="label-container" id="labelcontainerpassword">
                         <div><label for="password">PASSWORD</label></div>
-                        <div class="form-error"></div>
+                        <div class="form-error">
+                            <% if(errorMessage.password) { %>
+                            <%= errorMessage.password %>
+                            <% } %>
+                        </div>
                     </div>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" value="<%= result.password %>">
                 </div>
                 <div>
                     <button type="submit" class="submit-button">LOGIN</button>

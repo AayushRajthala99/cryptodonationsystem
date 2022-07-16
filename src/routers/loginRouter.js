@@ -6,7 +6,13 @@ const {
   view
 } = require("../controllers/LoginController");
 
+const {
+  linkSchemaLogin,
+  validateLogin,
+} = require('../middleware/login');
+
+
 router.get("/", index);
-router.post("/",view);
+router.post("/", validateLogin(linkSchemaLogin), view);
 
 module.exports = router;

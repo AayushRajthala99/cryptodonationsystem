@@ -3,7 +3,7 @@ const router = express.Router()
 
 const {
     index,
-} = require('../controllers/dashboardController')
+} = require('../controllers/DashboardController')
 
 router.get('/', index);
 

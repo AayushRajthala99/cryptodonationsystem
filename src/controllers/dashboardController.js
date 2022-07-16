@@ -1,4 +1,6 @@
-const { logger } = require("../utils/logger");
+const {
+  logger
+} = require("../utils/logger");
 
 async function index(req, res, next) {
   try {
