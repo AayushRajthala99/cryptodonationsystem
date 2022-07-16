@@ -1,7 +1,7 @@
 "use strict";
 let inputLength = {
-    low: 3,
-    high: 60
+    min: 3,
+    max: 60
 }
 
 const registrationForm = document.querySelector("#registrationform");
@@ -34,7 +34,7 @@ function registrationFormValidation() {
     if (fullNameValue === '') {
         nameErrorFlag = true;
         setErrorFor(fullName, '* NAME REQUIRED!');
-    } else if (valueLength(fullNameValue) < inputLength.low || valueLength(fullNameValue) > inputLength.high) {
+    } else if (valueLength(fullNameValue) < inputLength.min || valueLength(fullNameValue) > inputLength.max) {
         nameErrorFlag = true;
         setErrorFor(fullName, '* INVALID VALUE LENGTH!');
     } else {
@@ -49,7 +49,7 @@ function registrationFormValidation() {
     } else if (!isEmail(emailValue)) {
         emailErrorFlag = true;
         setErrorFor(email, '* INVALID FORMAT!');
-    } else if (valueLength(emailValue) < inputLength.low || valueLength(emailValue) > inputLength.high) {
+    } else if (valueLength(emailValue) < inputLength.min || valueLength(emailValue) > inputLength.max) {
         emailErrorFlag = true;
         setErrorFor(email, '* INVALID VALUE LENGTH!');
     } else {
@@ -61,7 +61,7 @@ function registrationFormValidation() {
     if (passwordValue === '') {
         passwordErrorFlag = true;
         setErrorFor(password, '* PASSWORD REQUIRED!');
-    } else if (valueLength(passwordValue) < inputLength.low || valueLength(passwordValue) > inputLength.high) {
+    } else if (valueLength(passwordValue) < inputLength.min || valueLength(passwordValue) > inputLength.max) {
         passwordErrorFlag = true;
         setErrorFor(password, '* INVALID VALUE LENGTH!');
     } else {
@@ -79,7 +79,7 @@ function registrationFormValidation() {
     } else if (!passwordCheck(passwordValue, confirmpasswordValue)) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* PASSWORD MISMATCH!');
-    } else if (valueLength(confirmpasswordValue) < inputLength.low || valueLength(confirmpasswordValue) > inputLength.high) {
+    } else if (valueLength(confirmpasswordValue) < inputLength.min || valueLength(confirmpasswordValue) > inputLength.max) {
         passwordErrorFlag = true;
         setErrorFor(confirmpassword, '* INVALID VALUE LENGTH!');
     } else {

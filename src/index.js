@@ -10,7 +10,7 @@ const {
   loginRouter,
   dashboardRouter,
   registerRouter,
-  changepasswordRouter
+  changepasswordRouter,
 } = require("./routers");
 
 app.use(express.static(path.join(__dirname, "..", "public")));

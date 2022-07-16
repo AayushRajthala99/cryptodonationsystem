@@ -29,6 +29,7 @@
     "nodemailer": "^6.7.2",
     "validatorjs": "^3.22.1",
     "winston": "^3.3.4",
+    "winston-daily-rotate-file": "^4.5.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {

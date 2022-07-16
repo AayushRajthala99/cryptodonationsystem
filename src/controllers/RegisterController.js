@@ -1,4 +1,5 @@
 const db = require('../../config/mysql');
+const { logger } = require("../utils/logger");
 
 const {
   userRegistration,
@@ -7,7 +8,6 @@ const {
 
 async function index(req, res, next) {
   try {
-    
     const result = {
       fullname: null,
       email: null,
@@ -22,11 +22,15 @@ async function index(req, res, next) {
       confirmpassword: null,
     };
 
-    res.render("../views/register/index", {
-      result: result, errorMessage: errorMessage
+    res.render('register/index', {
+      result: result,
+      errorMessage: errorMessage
     });
   } catch (err) {
-    res.send("ERROR LOADING SIGNUP PAGE");
+    logger.error(`${err}`);
+    res.render('error', {
+      error: "ERROR LOADING SIGNUP PAGE"
+    });
   }
 }
 
@@ -35,22 +39,18 @@ async function store(req, res, next) {
     const {
       fullname,
       email,
-      password,
       confirmpassword,
     } = req.body;
 
-    if (password === confirmpassword) {
-      const result = await userRegistration(fullname, email, confirmpassword);
-      if (result.status) {
-        res.redirect('/');
-      } else {
-        console.log("Something Went Wrong While Registering User");
-      }
-    } else {
-      console.log("Password Mismatch");
+    const result = await userRegistration(fullname, email, confirmpassword);
+    if (result.status) {
+      res.redirect('/');
     }
   } catch (err) {
-    res.send("ERROR REGISTERING USER");
+    logger.error(`${err}`);
+    res.render('error', {
+      error: "Something Went Wrong While Registering User"
+    });
   }
 }
 
