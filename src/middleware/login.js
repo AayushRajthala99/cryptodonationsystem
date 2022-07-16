@@ -1,5 +1,7 @@
 const yup = require("yup");
-const { getColumnInfo } = require("../utils/utils");
+const {
+  getColumnInfo
+} = require("../utils/utils");
 
 let inputLength = {
   min: 3,
@@ -14,7 +16,7 @@ const linkSchemaLogin = yup.object({
       .min(inputLength.min, "* INVALID VALUE LENGTH!")
       .max(inputLength.max, "* INVALID VALUE LENGTH!")
       .required("* EMAIL REQUIRED!")
-      .test("* User doesn't Exist", "* User doesn't Exist", () => {
+      .test("* USER DOESN'T EXIST!", "* USER DOESN'T EXIST!", () => {
         return userArray.result.length !== 0;
       }),
 
@@ -29,7 +31,10 @@ const linkSchemaLogin = yup.object({
 // Validation Function for login store ...
 const validateLogin = (schema) => async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const {
+      email,
+      password
+    } = req.body;
 
     const result = {
       email: email,
@@ -39,14 +44,11 @@ const validateLogin = (schema) => async (req, res, next) => {
     userArray = await getColumnInfo("user", "email", "email", email);
     if (userArray.status) {
       try {
-        await schema.validate(
-          {
-            body: req.body,
-          },
-          {
-            abortEarly: false,
-          }
-        );
+        await schema.validate({
+          body: req.body,
+        }, {
+          abortEarly: false,
+        });
         return next();
       } catch (error) {
         const errorMessage = {
@@ -62,7 +64,6 @@ const validateLogin = (schema) => async (req, res, next) => {
             errorMessage.password = e.errors[0];
           }
         });
-        console.log(error.inner);
         res.render("login", {
           result: result,
           errorMessage: errorMessage,

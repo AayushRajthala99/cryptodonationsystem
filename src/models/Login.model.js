@@ -1,7 +1,11 @@
 const db = require("../../config/mysql");
-const { logger } = require("../utils/logger");
+const {
+  logger
+} = require("../utils/logger");
 
-const { promisifiedQuery } = require("../utils/utils");
+const {
+  promisifiedQuery
+} = require("../utils/utils");
 
 const getLoginInfo = async (email) => {
   try {

@@ -13,6 +13,6 @@ const {
 
 
 router.get("/", index);
-router.post("/",validateLogin(linkSchemaLogin), view);
+router.post("/", validateLogin(linkSchemaLogin), view);
 
-module.exports = router; 
+module.exports = router;
