@@ -7,12 +7,12 @@ const {
 } = require("../controllers/LoginController");
 
 const {
-  linkSchemaStore,
-  validateStore,
+  linkSchemaLogin,
+  validateLogin,
 } = require('../middleware/login');
 
 
 router.get("/", index);
-router.post("/",validateStore(linkSchemaStore), view);
+router.post("/",validateLogin(linkSchemaLogin), view);
 
 module.exports = router; 
